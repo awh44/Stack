@@ -3,18 +3,23 @@
 
 #include <cstddef>
 
+#include "Collection.h"
 #include "../Node/Node.h"
 
 template <class T>
-class Stack
+class Stack : public Collection<T>
 {
 	public:
 		Stack(); //"MAKENULL" substitute
 		~Stack();
 		T top();
-		void pop();
 		void push(T x);
+		void pop();
 		bool empty();
+
+		T get();
+		void add(T x);
+		void remove();
 
 	private:
 		Node<T> *head_;
@@ -29,11 +34,9 @@ Stack<T>::Stack()
 template <class T>
 Stack<T>::~Stack()
 {
-	while (head_ != NULL)
+	while (!empty())
 	{
-		Node<T> *next = head_->get_next();
-		delete head_;
-		head_ = next;
+		pop();
 	}
 }
 
@@ -61,5 +64,23 @@ template <class T>
 bool Stack<T>::empty()
 {
 	return head_ == NULL;
+}
+
+template <class T>
+T Stack<T>::get()
+{
+	return top();
+}
+
+template <class T>
+void Stack<T>::add(T x)
+{
+	push(x);
+}
+
+template <class T>
+void Stack<T>::remove()
+{
+	pop();
 }
 #endif

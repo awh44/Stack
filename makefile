@@ -1,7 +1,7 @@
 driver: main.out
 	./main.out
 	
-main.out: main.cpp Stack.h ../Node/Node.h
+main.out: main.cpp Stack.h ../Node/Node.h Collection.h
 	g++ -omain.out main.cpp Stack.h ../Node/Node.h
 
 clean:
